@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mercado Liebre Argentina</title>
+	<!-- Font Awesome Stylesheet -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+	<!-- Bootstrap Grid Stylesheet -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- Own Stylesheet --> 
+	<link rel="stylesheet" href="/stylesheets/app.css">
+</head>
+<body>
+    <%- include('./partials/header')  %> 
+    <div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Detalle del producto: <%= producto.name %></h2>
+			</div>
+		</div>
+		<div class="product-detail">
+			<div class="row">
+				<div class="col-12 col-lg-8">
+					<img src="/images/products/<%= producto.image%>" alt="product image" class="product-detail-img">
+					<p class="product-detail-description">
+						<%= producto.description %>
+					</p>
+				</div>
+				<div class="col-12 col-lg-4">
+					<article class="product-detail-info">
+						<h2><%= producto.name %></h2>
+                        <% if (producto.discount > 0) { %>     
+                        <span>$ <%= producto.price %>/ <%= producto.discount %>% OFF</span>
+                        <h2>$ <%= descuentoProducto %></h2>
+                        <% } else { %>
+                        <h2>$ <%= producto.price %></h2>
+                        <% } %>
+                        <p>Paga 12 cuotas interes</p>
+                        <p>Retiro en locales</p>
+						<ul class="actions-list">
+							<li>
+								<i class="fas fa-credit-card"></i>
+								<p>Pagá en 12 cuotas sin interes</p>
+							</li>
+							<li>
+								<i class="fas fa-store"></i>
+								<p>Retiro gratis en locales del vendedor</p>
+							</li>
+						</ul>
+
+						<a href="#" class="buy-now-button"><button type="submit">COMPRAR AHORA</button></a>
+						<hr>
+
+						<a href="/product/edit/<%= producto.id %>" class="action-button edit"><button type="submit">EDITAR PRODUCTO</button></a>
+						<form action="/product/delete/<%= producto.id %>?_method=DELETE" method="POST" style="display: inline-flex">
+								<button type="submit" class="action-button delete">ELIMINAR</button>
+						</form>
+					</article>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="sub-footer">
+    <div class="container">
+        <p>Copyright © 1999-2019 MercadoLiebre S.R.L.</p>
+    </div>
+</div>
+</body>
+
+</html>  
